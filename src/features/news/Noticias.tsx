@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { obtenerNoticias } from "./fakeRest";
-import {
-  ContenedorNoticias, ListaNoticias, TituloNoticias,
-} from "./styled";
+import { ContenedorNoticias, ListaNoticias, TituloNoticias } from "./styled";
 import TarjetaNoticias from "./TarjetaNoticia";
 import Modal from "./Modal";
-import { normalizarNoticias } from "./Noticias.Utils";
+import { normalizarNoticias } from "./utils";
 
 export interface INoticiasNormalizadas {
   id: number;
