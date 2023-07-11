@@ -1,6 +1,6 @@
-import { INoticiasNormalizadas } from "./Noticias";
 import { BotonSuscribir, CloseButton, CotenedorTexto, DescripcionModal, ImagenModal, TarjetaModal, TituloModal } from "./styled";
 import { SuscribeImage, CloseButton as Close } from "../../assets";
+import { INoticiasNormalizadas } from "./types";
 
 interface IProps {
     setModal: (n: INoticiasNormalizadas | null) => void;

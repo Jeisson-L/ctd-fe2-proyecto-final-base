@@ -4,16 +4,7 @@ import { ContenedorNoticias, ListaNoticias, TituloNoticias } from "./styled";
 import TarjetaNoticias from "./TarjetaNoticia";
 import Modal from "./Modal";
 import { normalizarNoticias } from "./utils";
-
-export interface INoticiasNormalizadas {
-  id: number;
-  titulo: string;
-  descripcion: string;
-  fecha: number | string;
-  esPremium: boolean;
-  imagen: string;
-  descripcionCorta?: string;
-}
+import { INoticiasNormalizadas } from "./types";
 
 const Noticias = () => {
   const [noticias, setNoticias] = useState<INoticiasNormalizadas[]>([]);

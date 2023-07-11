@@ -1,5 +1,5 @@
-import { INoticiasNormalizadas } from "./Noticias"
 import { BotonLectura, DescripcionTarjetaNoticia, FechaTarjetaNoticia, ImagenTarjetaNoticia, TarjetaNoticia, TituloTarjetaNoticia } from "./styled"
+import { INoticiasNormalizadas } from "./types";
 
 interface IProps {
     noticia: INoticiasNormalizadas,

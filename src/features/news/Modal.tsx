@@ -1,7 +1,7 @@
-import { INoticiasNormalizadas } from "./Noticias";
 import { ContenedorModal } from "./styled";
 import TarjetaModal from "./TarjetaModal";
 import TarjetaModalPremium from "./TarjetaModalPremium";
+import { INoticiasNormalizadas } from "./types";
 
 interface IProps {
     esPremium: boolean | undefined,

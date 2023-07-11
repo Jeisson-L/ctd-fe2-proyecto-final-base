@@ -1,6 +1,6 @@
-import { INoticiasNormalizadas } from "./Noticias";
 import { CloseButton, ContenedorModal, CotenedorTexto, DescripcionModal, ImagenModal, TarjetaModal as TarjetaModaleStayle, TituloModal } from "./styled";
 import { CloseButton as Close } from "../../assets";
+import { INoticiasNormalizadas } from "./types";
 
 interface IProps {
     modal: INoticiasNormalizadas,
