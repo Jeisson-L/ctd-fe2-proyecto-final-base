@@ -60,10 +60,6 @@ describe('Citas', () => {
             render(<Cita />);
             expect(screen.getByText(/No se encontro ninguna cita/i)).toBeInTheDocument();
         });
-        it('El mensaje del autor de la cita debe estar vacío', async () => {
-            render(<Cita />);
-            expect(screen.getByDisplayValue('')).toBeInTheDocument();
-        });
         it('El input de texto del autor debe estar vacío', async () => {
             render(<Cita />);
             expect(screen.getByRole('textbox', { name: /Author Cita/i })).toHaveValue('');
@@ -166,9 +162,9 @@ describe('Citas', () => {
         it('El mensaje de texto del estado de las citas debe existir', async () => {
             render(<Cita />);
             const botonSolicitarCita = await screen.findByText(/Obtener cita aleatoria/i);
-            userEvent.click(botonSolicitarCita);
+            await userEvent.click(botonSolicitarCita);
             const buttonBorrar = await screen.findByLabelText(/Borrar/i)
-            userEvent.click(buttonBorrar);
+            await userEvent.click(buttonBorrar);
             await waitFor(() => {
                 expect(screen.getByText(/No se encontro ninguna cita/i)).toBeInTheDocument();
             })
@@ -176,19 +172,20 @@ describe('Citas', () => {
         it('El mensaje del autor de la cita debe estar vacío', async () => {
             render(<Cita />);
             const botonSolicitarCita = await screen.findByText(/Obtener cita aleatoria/i);
-            userEvent.click(botonSolicitarCita);
+            await userEvent.click(botonSolicitarCita);
             const buttonBorrar = await screen.findByLabelText(/Borrar/i)
-            userEvent.click(buttonBorrar);
+            const personajeAleatorio = await screen.findByText(/Milhouse Van Houten/i)
+            await userEvent.click(buttonBorrar);
             await waitFor(() => {
-                expect(screen.getByDisplayValue('')).toBeInTheDocument();
+                expect(personajeAleatorio).toBeEmptyDOMElement();
             })
         });
         it('El input de texto del autor debe estar vacío', async () => {
             render(<Cita />);
             const botonSolicitarCita = await screen.findByText(/Obtener cita aleatoria/i);
-            userEvent.click(botonSolicitarCita);
+            await userEvent.click(botonSolicitarCita);
             const buttonBorrar = await screen.findByLabelText(/Borrar/i)
-            userEvent.click(buttonBorrar);
+            await userEvent.click(buttonBorrar);
             await waitFor(() => {
                 expect(screen.getByRole('textbox', { name: /Author Cita/i })).toHaveValue('');
             })
@@ -196,9 +193,9 @@ describe('Citas', () => {
         it('El botón para obtener cita debe estar habilitado', async () => {
             render(<Cita />);
             const botonSolicitarCita = await screen.findByText(/Obtener cita aleatoria/i);
-            userEvent.click(botonSolicitarCita);
+            await userEvent.click(botonSolicitarCita);
             const buttonBorrar = await screen.findByLabelText(/Borrar/i)
-            userEvent.click(buttonBorrar);
+            await userEvent.click(buttonBorrar);
             await waitFor(() => {
                 expect(screen.getByRole('button', { name: /Obtener cita aleatoria/i })).toBeEnabled();
             })
@@ -206,9 +203,9 @@ describe('Citas', () => {
         it('El botón para borrar una cita debe estar habilitado', async () => {
             render(<Cita />);
             const botonSolicitarCita = await screen.findByText(/Obtener cita aleatoria/i);
-            userEvent.click(botonSolicitarCita);
+            await userEvent.click(botonSolicitarCita);
             const buttonBorrar = await screen.findByLabelText(/Borrar/i)
-            userEvent.click(buttonBorrar);
+            await userEvent.click(buttonBorrar);
             await waitFor(() => {
                 expect(screen.getByRole('button', { name: /Borrar/i })).toBeEnabled();
             })
