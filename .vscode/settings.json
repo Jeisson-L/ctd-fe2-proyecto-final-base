@@ -1,0 +1,4 @@
+{
+    "jest.jestCommandLine": "npm test --",
+    "json.schemaDownload.enable": false
+}
