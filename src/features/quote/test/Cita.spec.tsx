@@ -149,6 +149,69 @@ describe('Citas', () => {
     })
 
     describe('Al solicitar una cita con un valor númerico', () => {
+        it("El mensaje del texto del estado debe ser Por favor ingrese un nombre válido", async () => {
+            render(<Cita />);
+            const input = screen.getByRole('textbox', { name: 'Author Cita' });
+            await userEvent.click(input);
+            await userEvent.type(input, "123456");
+            const botonSolicitarCita = screen.getByRole('button', { name: /Obtener Cita/i });
+            await userEvent.click(botonSolicitarCita);
+            await waitFor(() => {
+                expect(screen.getByText(/Por favor ingrese un nombre válido/i)).toBeInTheDocument();
+            })
+        })
+    })
 
+    describe("Al borrar la información del formulario", () => {
+        it('El mensaje de texto del estado de las citas debe existir', async () => {
+            render(<Cita />);
+            const botonSolicitarCita = await screen.findByText(/Obtener cita aleatoria/i);
+            userEvent.click(botonSolicitarCita);
+            const buttonBorrar = await screen.findByLabelText(/Borrar/i)
+            userEvent.click(buttonBorrar);
+            await waitFor(() => {
+                expect(screen.getByText(/No se encontro ninguna cita/i)).toBeInTheDocument();
+            })
+        });
+        it('El mensaje del autor de la cita debe estar vacío', async () => {
+            render(<Cita />);
+            const botonSolicitarCita = await screen.findByText(/Obtener cita aleatoria/i);
+            userEvent.click(botonSolicitarCita);
+            const buttonBorrar = await screen.findByLabelText(/Borrar/i)
+            userEvent.click(buttonBorrar);
+            await waitFor(() => {
+                expect(screen.getByDisplayValue('')).toBeInTheDocument();
+            })
+        });
+        it('El input de texto del autor debe estar vacío', async () => {
+            render(<Cita />);
+            const botonSolicitarCita = await screen.findByText(/Obtener cita aleatoria/i);
+            userEvent.click(botonSolicitarCita);
+            const buttonBorrar = await screen.findByLabelText(/Borrar/i)
+            userEvent.click(buttonBorrar);
+            await waitFor(() => {
+                expect(screen.getByRole('textbox', { name: /Author Cita/i })).toHaveValue('');
+            })
+        });
+        it('El botón para obtener cita debe estar habilitado', async () => {
+            render(<Cita />);
+            const botonSolicitarCita = await screen.findByText(/Obtener cita aleatoria/i);
+            userEvent.click(botonSolicitarCita);
+            const buttonBorrar = await screen.findByLabelText(/Borrar/i)
+            userEvent.click(buttonBorrar);
+            await waitFor(() => {
+                expect(screen.getByRole('button', { name: /Obtener cita aleatoria/i })).toBeEnabled();
+            })
+        });
+        it('El botón para borrar una cita debe estar habilitado', async () => {
+            render(<Cita />);
+            const botonSolicitarCita = await screen.findByText(/Obtener cita aleatoria/i);
+            userEvent.click(botonSolicitarCita);
+            const buttonBorrar = await screen.findByLabelText(/Borrar/i)
+            userEvent.click(buttonBorrar);
+            await waitFor(() => {
+                expect(screen.getByRole('button', { name: /Borrar/i })).toBeEnabled();
+            })
+        });
     })
 })
